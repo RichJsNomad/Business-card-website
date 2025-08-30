@@ -314,6 +314,29 @@ h3.card-header {
   background: var(--color-accent);
 }
 
+.typewriter-container {
+  display: inline-block;
+}
+
+.typewriter-text {
+  display: inline-block;
+}
+
+.cursor {
+  animation: blink 1s infinite;
+  display: inline-block;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
 footer p {
   font-size: 14px;
 }

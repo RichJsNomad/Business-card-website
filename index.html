@@ -22,7 +22,12 @@
       <a href="/">
         <h1>@RichJsNomad👨‍💻</h1>
       </a>
-      <h4>Фронтенд разработчик😎(JS, React)</h4>
+      <h4>
+        <span class="typewriter-container">
+          <span class="typewriter-text" id="typewriter-text"></span>
+          <span class="cursor" id="cursor">|</span>
+        </span>
+      </h4>
       <p>Разрабатываю веб-сайты и интерфейсы любой сложности</p>
       <nav>
         <a class="anchor-text" href="#about">
@@ -372,5 +377,38 @@
         typeface
       </p>
     </footer>
+    <script>
+      const typewriterText = document.getElementById('typewriter-text');
+      const cursor = document.getElementById('cursor');
+      
+      const textToType = "Фронтенд разработчик😎(JS, React)";
+      let currentIndex = 0;
+      let isDeleting = false;
+      let typingSpeed = 100;
+      
+      function typeWriter() {
+        if (!isDeleting && currentIndex < textToType.length) {
+          typewriterText.textContent += textToType.charAt(currentIndex);
+          currentIndex++;
+          setTimeout(typeWriter, typingSpeed);
+        } else if (!isDeleting && currentIndex === textToType.length) {
+          setTimeout(() => {
+            isDeleting = true;
+            typeWriter();
+          }, 3000);
+        } else if (isDeleting && currentIndex > 0) {
+          typewriterText.textContent = textToType.substring(0, currentIndex - 1);
+          currentIndex--;
+          setTimeout(typeWriter, typingSpeed / 2);
+        } else if (isDeleting && currentIndex === 0) {
+          isDeleting = false;
+          setTimeout(typeWriter, 1000);
+        }
+      }
+      
+      document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(typeWriter, 1500);
+      });
+    </script>
   </body>
 </html>
